@@ -1,0 +1,42 @@
+
+import { css, keyframes } from '@emotion/css'
+import { useMemo } from 'react'
+
+export interface AnimatedTitleProps {
+  title: string
+  containerClassName?: string
+  containerStyle?: object | undefined
+}
+
+export default function AnimatedTitle(props: AnimatedTitleProps) {
+  const { title, containerClassName, containerStyle } = props
+
+  const titleClass = useMemo(() => css`
+    background: linear-gradient(270deg, #ff7669 0, hsla(5, 79%, 81%, .95) 5%, hsla(0, 0%, 100%, .95) 10%, hsla(0, 0%, 100%, .95) 90%, hsla(5, 79%, 81%, .95) 95%, #ff7669);
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-size: 200% 100%;
+    font-size: 38px;
+    font-style: normal;
+    font-weight: 600;
+    opacity: 1;
+    -webkit-text-fill-color: transparent;
+    animation: ${maskedAnimation} 5s linear infinite;
+  `, [])
+
+  return (
+    <div className={containerClassName} style={containerStyle}>
+      <div className={titleClass}>{title}</div>
+    </div>
+  )
+}
+
+const maskedAnimation = keyframes`
+  0% {
+    background-position: 20% 0
+  }
+
+  to {
+    background-position: -120% 0
+  }
+`

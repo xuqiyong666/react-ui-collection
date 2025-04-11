@@ -13,13 +13,12 @@ import packageJson from "./package.json" assert { type: "json" };
 export default [
 	{
 		input: [
-			'src/AnimatedTitle.tsx',
-			'src/Button.tsx'
+			'src/index.ts'
 		],
 		output: {
-			dir: "components",
+			dir: "dist",
 			format: "esm",
-			sourcemap: false
+			// sourcemap: true
 		},
 		plugins: [
 			peerDepsExternal(),  // 排除 peerDependencies
@@ -31,18 +30,12 @@ export default [
 			}),
 			postcss({              // 处理 SCSS + CSS Modules
 				modules: true,       // 启用 CSS Modules
-				extract: true, // 禁用默认提取
-				output: (chunk) => `${chunk.name}.css`, // 按入口名生成 CSS
+				extract: false, // 禁用默认提取
+				// output: (chunk) => `${chunk.name}.css`, // 按入口名生成 CSS
 				plugins: [
 					postcssPresetEnv()
 				],
 			})
 		],
-	},
-	// {
-	// 	input: "dist/esm/types/index.d.ts",
-	// 	output: [{ file: "dist/index.d.ts", format: "esm" }],
-	// 	plugins: [dts()],
-	// 	external: [/\.css$/],
-	// },
+	}
 ]
