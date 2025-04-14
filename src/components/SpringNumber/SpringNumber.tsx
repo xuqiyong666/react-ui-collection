@@ -1,15 +1,15 @@
 
 import { useEffect } from 'react'
-import { useSpring, animated, config } from '@react-spring/web'
+import { useSpring, animated } from '@react-spring/web'
 
 export interface SpringNumberProps {
   number: number
-  wrapClassName?: string
-  wrapStyle?: object | undefined
+  className?: string
+  style?: object | undefined
 }
 
 export default function SpringNumber(props: SpringNumberProps) {
-  const { number, wrapClassName, wrapStyle } = props
+  const { number, className, style } = props
 
   const [springProps, api] = useSpring(
     () => ({
@@ -34,7 +34,7 @@ export default function SpringNumber(props: SpringNumberProps) {
   const AnimatedSpan = animated('span')
 
   return (
-    <AnimatedSpan className={wrapClassName} style={wrapStyle}>
+    <AnimatedSpan className={className} style={style}>
       {springProps.number.to(x => x.toFixed(0))}
     </AnimatedSpan>
   )
