@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import AnimatedTitle from './AnimatedTitle';
 
 const meta = {
-  title: "UI/AnimatedTitle",
+  title: "AnimatedTitle",
   component: AnimatedTitle,
 } satisfies Meta<typeof AnimatedTitle>;
 
